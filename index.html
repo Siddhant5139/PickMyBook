@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PickMyBook - Your Book Buddy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #4b0082;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    main {
+      padding: 30px;
+      text-align: center;
+    }
+    .genres {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .genre-card {
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      padding: 15px 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .genre-card:hover {
+      border-color: #4b0082;
+      transform: scale(1.05);
+    }
+    #chatbox {
+      margin-top: 50px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #eee;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 PickMyBook</h1>
+    <p>Your personal book recommendation chatbot</p>
+  </header>
+
+  <main>
+    <h2>What kind of book are you looking for?</h2>
+
+    <div class="genres">
+      <div class="genre-card">Fiction</div>
+      <div class="genre-card">Non-Fiction</div>
+      <div class="genre-card">Fantasy</div>
+      <div class="genre-card">Thriller</div>
+      <div class="genre-card">Romance</div>
+      <div class="genre-card">Self-Help</div>
+      <div class="genre-card">Horror</div>
+      <div class="genre-card">Graphic Novel</div>
+      <div class="genre-card">Poetry</div>
+      <div class="genre-card">Historical</div>
+    </div>
+
+    <div id="chatbox">
+      <h3>💬 Chat with PickMyBook</h3>
+      <p>The chatbot should appear in the bottom-right corner. Start chatting to get recommendations!</p>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 PickMyBook. All rights reserved.
+  </footer>
+
+  <!-- 💬 IBM Watson Assistant Chatbot Script -->
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "d8f991c5-3899-4ef3-9e02-b7c3f9b1cb2c", // The ID of this integration.
+      region: "eu-de", // The region your integration is hosted in.
+      serviceInstanceID: "9a761341-6c70-4392-92c3-a0fa4af96eeb", // The ID of your service instance.
+      onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+      const t = document.createElement('script');
+      t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+              (window.watsonAssistantChatOptions.clientVersion || 'latest') +
+              "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+
+</body>
+</html>
