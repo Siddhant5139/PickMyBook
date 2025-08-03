@@ -2,7 +2,7 @@
 PickMyBook is an AI-powered conversational chatbot designed to help users discover and choose books based on their personal preferences, emotional states, reading habits, and interests.
 Whether the user is looking for something thrilling, romantic, motivational, or relaxing, PickMyBook intelligently processes the request and suggests relevant titles using predefined genres, moods, author databases, and user intent recognition.
 
-Link of live demo:-
+Link of live demo:-https://siddhant5139.github.io/PickMyBook/
 
 # 🌟Features🌟
 ✅ Personalized Recommendations
