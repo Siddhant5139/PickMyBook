@@ -1,70 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PickMyBook - Your Personal Book Assistant</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PickMyBook - Chatbot & Book Thumbnails</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 2rem;
+    }
+    .features-container {
+      display: flex;
+      flex-wrap: wrap; /* Wrap items on small screens */
+      justify-content: center; /* Center items horizontally */
+      gap: 2.5rem; /* Space between items */
+      margin-top: 2rem;
+    }
+
+     .feature-item {
+      background-color: #ffffff;
+      padding: 1.5rem 2rem; /* Increased padding for bigger size */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Slightly stronger shadow */
+      text-align: center;
+      min-width: 200px; /* Increased width */
+      font-weight: bold;
+      font-size: 1.2rem; /* Larger text */
+      transition: transform 0.2s;
+    }
+
+     .feature-item:hover {
+      transform: scale(1.05); /* Slight zoom on hover for interactivity */
+    }
+    .book-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .book-thumbnails img {
+      width: 100%;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f1f1f1;
+      color: #555;
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body>
 
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20">
-    <div class="container mx-auto text-center px-4">
-      <h1 class="text-5xl font-bold mb-4">📚 PickMyBook</h1>
-      <p class="text-xl mb-6">Your Personal Book Recommendation Chatbot</p>
-      <p class="text-lg">Just tell me your mood, genre, or favorite author—I'll suggest the perfect read!</p>
-    </div>
-  </section>
+<header>
+  <h1>📚 PickMyBook</h1>
+  <p>Your Personalized Book Recommendation Assistant</p>
+</header>
 
-  <!-- Features Section -->
-  <section class="py-12 bg-gray-50">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-10">✨ What I Can Do</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-md text-center">
-          <h3 class="text-xl font-semibold mb-2">📖 Genre Suggestions</h3>
-          <p>Thrillers, fantasy, sci-fi, romance, philosophy, and more.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md text-center">
-          <h3 class="text-xl font-semibold mb-2">👩‍💼 Author-Based Recs</h3>
-          <p>Ask for books by your favorite authors and explore similar ones.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md text-center">
-          <h3 class="text-xl font-semibold mb-2">🎯 Mood-Based Picks</h3>
-          <p>Happy, emotional, dark, funny—get books based on your vibe.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+  <h2>Discover books you'll love</h2>
+  <p>Ask for books by mood, genre, or author. Let the chatbot do the magic!</p>
+</section>
 
-  <!-- Chatbot Section -->
-  <section class="py-12 bg-white text-center">
-    <h2 class="text-3xl font-bold mb-4">💬 Chat with PickMyBook</h2>
-    <p class="mb-6">Type your query below and let the magic begin!</p>
-  </section>
+<section class="features">
+  <h3>Features:</h3>
+  <div class="features-container">
+    <div class="feature-item">📖 Genre-based recommendations</div>
+    <div class="feature-item">😊 Mood-based book suggestions</div>
+    <div class="feature-item">🧠 Learn about authors and book details</div>
+    <div class="feature-item">🎯 Personalized book discovery</div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white text-center py-4">
-    <p>© 2025 PickMyBook. Made with ❤️ for book lovers.</p>
-  </footer>
+<!-- Watson Assistant Embed Script -->
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "d8f991c5-3899-4ef3-9e02-b7c3f9b1cb2c", // Your integration ID
+    region: "eu-de", // Your region
+    serviceInstanceID: "9a761341-6c70-4392-92c3-a0fa4af96eeb", // Your service instance ID
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + 
+          (window.watsonAssistantChatOptions.clientVersion || 'latest') + 
+          "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
 
-  <!-- Watson Assistant Chatbot Embed -->
-  <script>
-    window.watsonAssistantChatOptions = {
-      integrationID: "d8f991c5-3899-4ef3-9e02-b7c3f9b1cb2c", // The ID of this integration.
-      region: "eu-de", // The region your integration is hosted in.
-      serviceInstanceID: "9a761341-6c70-4392-92c3-a0fa4af96eeb", // The ID of your service instance.
-      onLoad: async (instance) => { await instance.render(); }
-    };
-    setTimeout(function(){
-      const t = document.createElement('script');
-      t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
-              (window.watsonAssistantChatOptions.clientVersion || 'latest') +
-              "/WatsonAssistantChatEntry.js";
-      document.head.appendChild(t);
-    });
-  </script>
+<section class="book-thumbnails">
+  <!-- Self-Help & Non-fiction -->
+  <img src="https://www.bhagavad-gita.us/wp-content/uploads/2012/09/gita-104.jpg" alt="Bhagavad Gita">
+  <img src="https://jamesclear.com/wp-content/uploads/2025/06/atomic-habits-dots.png" alt="Atomic Habits">
+  <img src="https://m.media-amazon.com/images/I/410hw6Q5a9L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg" alt="The Power of Now">
+  <img src="https://covers.openlibrary.org/b/title/12345698-L.jpg" alt="Think and Grow Rich">
+
+  <!-- Thriller -->
+  <img src="https://imgs.search.brave.com/PQWJtd06oZqmfO9vxfEgH0li1QmdvXJEa7G0xFaNdsE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bW92aWVwb3N0ZXJj/bHViLmNvbS9jZG4v/c2hvcC9wcm9kdWN0/cy9pbWFnZV9lMzc5/ODYwNi1jNTUwLTQ1/ZjYtYTIwOS0xMDUy/MDMxNTkyMGUuanBn/P3Y9MTYyMTM5MDQ3/NSZ3aWR0aD0xNDQ1" alt="Gone Girl">
+  <img src="https://imgs.search.brave.com/gvpd-54-M6Eri44PAEYNBVF1-9ctDqZaoFAbBpSI9ig/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5ucHIub3JnL2Fz/c2V0cy9iYWtlcnRh/eWxvci9jb3ZlcnMv/dC90aGUtZ2lybC1v/bi10aGUtdHJhaW4v/OTc4MTU5NDYzMzY2/OV9jdXN0b20tYzE1/Yzk3OTZhM2JmN2Nj/YzI5NDQxMjg1NmQ3/YzhjZjMxYmJlNGEy/Ny5qcGc_cz0xMTAw/JmM9ODUmZj1qcGVn" alt="The Girl on the Train">
+  <img src="https://imgs.search.brave.com/ULvWtz1grnMWbILABJcEGhVKaPIfi7B131Ef5wRWBcQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pNS53/YWxtYXJ0aW1hZ2Vz/LmNvbS9zZW8vU2ls/ZW50LVBhdGllbnQt/VGhlLTk3ODEyNTAz/MDE2OTdfZGIyMDc4/Y2QtZTk2YS00OTg1/LWI2ZmUtMTE5MTA5/MDI4N2UwXzIuZDlm/Y2JhMWVlOWUxYzhk/NjE3ZjE5ZjU5NTYx/NTU4ZWEuanBlZz9v/ZG5IZWlnaHQ9NjQw/Jm9kbldpZHRoPTY0/MCZvZG5CZz1GRkZG/RkY" alt="The Silent Patient">
+  <img src="https://imgs.search.brave.com/d80QaNuh6QJVv5YJBFo2M3LVUAaU6JXo6Ib9ldFRuJA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzgxZUU2ZFJveWNM/LmpwZw" alt="Before I Go to Sleep">
+  <img src="https://covers.openlibrary.org/b/title/12345685-L.jpg" alt="The Da Vinci Code">
+  <!-- Romance & Drama -->
+  <img src="https://imgs.search.brave.com/LMZMLNvN36JHdoVY3gPtMhQbYeo3BGfwxAL1xsTznrs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1QlpEUmlNakkz/WlRNdE1qUTBZeTAw/TjJNekxUZ3hOek10/TURJd1pHUTNOekl4/TkROaVhrRXlYa0Zx/Y0djQC5qcGc" alt="It Ends With Us">
+  <img src="https://imgs.search.brave.com/qqZiqxZVk_CW0v1O4yHnoef5iJrt3EpwO5dMqul1ngs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1QlptRmtZVGRo/TXpBdE9XVTBPUzAw/WmpSaUxXSTRPRE10/WlRBek56UTNNREE0/WTJVelhrRXlYa0Zx/Y0djQC5qcGc" alt="P.S. I Love You">
+  <img src="https://imgs.search.brave.com/DeT8YXo01HaOnvFOs8EWuSctQN4mFkYaKM3nIROeLW8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk1UUTJOakU0/TkRFMk5WNUJNbDVC/YW5CblhrRnRaVGd3/T1Rjd05ERTVOekVA/LmpwZw" alt="Me Before You">
+
+  
+
+  <!-- Fantasy -->
+  <img src="https://imgs.search.brave.com/SqG4z29jDSbpvZTbnLlawn22_AEVukWmzNQ54_-BjqM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdG9y/aWFydHMuY29tL2Nk/bi9zaG9wL2ZpbGVz/L0hQTjctbmV1dHJh/bC1oYXJyeS1wb3R0/ZXItYW5nbGUtMTIw/MF8xNjAweC5qcGc_/dj0xNzUwMjgwMzM4" alt="Harry Potter">
+  <img src="https://imgs.search.brave.com/K4Cc6dfzjyH04CtheG6CZh8WZXKR-gAbzy_gJovhYvg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFhZEpkMW1vbkwu/anBn" alt="Percy Jackson">
+  <img src="https://imgs.search.brave.com/l-IgXbvoMSkPIPxyeIwunIq_AjhPbj5Ik4pL6giMYdY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzF4azNSMDlIVkwu/anBn" alt="Mistborn">
+  <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/The_Immortals_Of_Meluha.jpg" alt="The Immortals of Meluha">
+  <img src="https://imgs.search.brave.com/6uPCbRwunGqj44DE73KwXAsUkqKo41UiRZYQZilpBic/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9waWN0/dXJlYm9va3JlcG9y/dC53b3JkcHJlc3Mu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDEwLzEwL3RoZWhv/YmJpdHBhcnRzaXgy/LnBuZz93PTQ1NSZo/PTU4Ng" alt="The Hobbit">
+
+  <!-- Sci-Fi -->
+  <img src="https://imgs.search.brave.com/KOrkNQWQy3Y9ypDXlRcuMS6ICyo4GlHKOmVqSXMYLhI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXQuY29t/L3cvZnVsbC9lLzEv/NC8xMTczODgtMjAw/MHgzMDAwLXBob25l/LWhkLWR1bmUtMjAy/MS13YWxscGFwZXIt/aW1hZ2UuanBn" alt="Dune">
+  <img src="https://imgs.search.brave.com/3dluJDFHUfxyc2__S5vpMM8OXE-rN1BCicorM_nc1C4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvNDEz/ODE0NS5qcGc" alt="Ender’s Game">
+  <img src="https://imgs.search.brave.com/K8zdxNmwv3cRKAyAGv7gejG-QcSTHgzOvk_Lyeiexmo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDQ3MDE0/NjUucG5n" alt="Neuromancer">
+  <img src="https://upload.wikimedia.org/wikipedia/en/d/d5/Snowcrash.jpg?20200523172524" alt="Snow Crash">
+
+  
+  
+</section>
+
+<footer>
+  Made with ❤️ for book lovers | © 2025 PickMyBook
+</footer>
 
 </body>
 </html>
+
+
